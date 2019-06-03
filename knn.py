@@ -5,6 +5,7 @@ import math
 from PIL import Image
 
 testdata = np.loadtxt("rsTrain.txt")
+print(testdata)
 
 #img1 = Image.fromarray(testdata)
 #img1.show()
@@ -13,6 +14,8 @@ band1 = np.fromfile('band1.irs', dtype ='uint8')
 band2 = np.fromfile('band2.irs', dtype='uint8')
 band3 = np.fromfile('band3.irs', dtype='uint8')
 band4 = np.fromfile('band4.irs', dtype='uint8')
+
+
 
 print(band1)
 
@@ -61,6 +64,20 @@ reshape_band4 = np.reshape(band4, (512, 512) )
 #img.show()
 
 
+
+#img1 = Image.fromarray(reshape_band1)
+#img1.show()
+#img2 = Image.fromarray(reshape_band2)
+#img2.show()
+
+#img3 = Image.fromarray(reshape_band3)
+#img3.show()
+
+
+img4 = Image.fromarray(reshape_band4)
+#img4.show()
+
+
 kolkata = reshape_band1 + reshape_band2 + reshape_band3 + reshape_band4
 print(kolkata)
 #img = Image.fromarray(kolkata)
@@ -88,9 +105,12 @@ print(new_band1)
 print("size of new band1",len(new_band1))
 print("size", new_band1.shape)
 
-print(new_band1[:,0].shape )
+print(new_band1[:,0])
 
+#neighbors = new_band1[]
 
+#y = testdata[:,-1]
+#print(y)
 
 
 
