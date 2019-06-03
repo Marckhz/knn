@@ -4,8 +4,8 @@ import math
 
 from PIL import Image
 
-testdata = np.loadtxt("rsTrain.txt")
-print(testdata)
+trainingdata = np.loadtxt("rsTrain.txt")
+print(trainingdata)
 
 #img1 = Image.fromarray(testdata)
 #img1.show()
@@ -22,10 +22,16 @@ print(band1)
 print("shape", band1.shape)
 
 
-x = testdata[:,0:4]
+x = trainingdata[:,0:4]
 
 
-print(testdata.shape)
+
+
+print(trainingdata.shape)
+
+
+
+#print(distance)
 
 """
 k = 1
@@ -60,8 +66,76 @@ reshape_band2 = np.reshape(band2, (512, 512) )
 reshape_band3  = np.reshape(band3, (512, 512) )
 reshape_band4 = np.reshape(band4, (512, 512) )
 
+
+band_1_to_test = x[:,0]
+band_2_to_test = x[:,1]
+
+#print(band_1_to_test)
+
+#en esta parte estoy iterando
+#por el la primer colimna del dataset de entrenamiento
+#y esto sacando la distancia  del training set y el testset
+#ahora necesito sacar los k vecinos.
+#voy  a ordernar el array y tomar los k vecinos.
+#despues de eso que?
+
+distance = 0
+#distancias con indices
+index_and_distance = []
+for point in band_1_to_test:
+    distance += np.square(reshape_band1 - point)
+    index_and_distance.append(distance)
+    #print(distance)
+square_distance = np.sqrt(index_and_distance)
+sorted_distance  = np.sort(square_distance)
+#print(sorted_distance)
+
+#lets_sort_index_and_distance = sorted(index_and_distance)
+print("\n \n \n ")
+#print(lets_sort_index_and_distance)
+k  = 1
+neighbors = []
+for x in range(k):
+    #print(sorted_distance[])
+    neighbors.append(sorted_distance[x])
+#print(neighbors)
+np_neighbors = np.array(neighbors)
+var = np.reshape(np_neighbors, (512, 512) )
+print(var.shape)
+#print(var)
+print(reshape_band1)
+j=0
+#for i in neighbors[0][0]:
+#    print(i)
+#    j+=1
+#print(j)
+
+
+
+
+
+
+
+
+
+#sorted_distance = np.sort(square_distance)
+
+#print("sorted distance ", sorted_distance)
+#print(sorted_distance.index)
+k = 1
+#neighbors = []
+
+#for x in range(k):
+ #  neighbors.append(sorted_distance[x][:,0])
+#print(neighbors)
+
+
 #img = Image.fromarray(reshape_band4)
 #img.show()
+
+"""
+
+
 
 
 
@@ -89,7 +163,7 @@ vector = []
 distance = 0
 i = 0
 for cell in np.nditer(x, order = 'C'):
-    distance = np.sqrt(np.square(kolkata - cell) )
+    distance = np.sqrt(np.square(reshape_band1[0] - cell) )
     #print(distance)
     #i+=1
     #if i == 50:
@@ -123,9 +197,7 @@ print(new_band1[:,0])
 
 
 
-
-
-
+"""
 
 
 
